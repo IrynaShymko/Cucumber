@@ -1,0 +1,12 @@
+environment:
+  intEnv:
+    env_name: intEnv
+    active: true
+
+  testEnv:
+    env_name: testEnv
+    active: false
+
+  defaultEnv:
+    env_name: defaultEnv
+    active: false
