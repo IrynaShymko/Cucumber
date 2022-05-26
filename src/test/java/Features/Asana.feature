@@ -11,7 +11,6 @@ Feature: Asana Test
     Then  User is able to see response with project details
 
   Scenario: Delete project
-    Given I have project object
     When User perform asana POST project operation
     And User perform asana Delete project operation
     Then User is able to see response with successful status code
