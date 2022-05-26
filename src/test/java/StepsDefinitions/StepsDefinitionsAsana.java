@@ -74,11 +74,6 @@ public class StepsDefinitionsAsana {
     public void user_perform_asana_Delete_project_operation() {
        response= requestBuilder.sendDELETEAsanaRequest_Project(projectGID);
         logger.info("<<<<<<<<<<< Response: " + response.asPrettyString());
-    }
-
-    @Then("User is able to see response with successful status code")
-    public void user_is_able_to_see_response_with_successful_status_code() {
-        logger.info("<<<<<<<<<<< user_is_able_to_see_response_with_successful_status_code");
         response.then().spec(ResponseSpecificationHelper.getResponseSpecificationForDeletedProject(project));
     }
 
