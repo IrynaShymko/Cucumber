@@ -35,6 +35,14 @@ public class StepsDefinitionsAsana {
     public void i_have_project_object() {
         logger.info("<<<<<<<<<<< i_have_project_object");
         project = new JsonParser().parseProjectFromJson();
+        logger.info("Project name: " + project.getName() +", Team gid: "+project.getTeam());
+    }
+
+    @Given("I have updated project object")
+    public void i_have_updated_project_object() {
+        logger.info("<<<<<<<<<<< i_have_updated_project_object");
+        project = new JsonParser().parseUpdatedProjectFromJson();
+        logger.info("Project name: " + project.getName() +", Team gid: "+project.getTeam());
     }
 
     @When("User perform asana GET workspace operation")
@@ -50,7 +58,20 @@ public class StepsDefinitionsAsana {
         response = requestBuilder.sendPOSTAsanaRequest_Project();
         projectGID = response.jsonPath().getString(ObjectsStructureData.PROJECT_GID);
         logger.info("<<<<<<<<<<< Response: " + response.asPrettyString());
+    }
 
+    @When("User perform asana PUT project operation")
+    public void user_perform_asana_PUT_project_operation() {
+        logger.info("user_perform_asana_PUT_project_operation");
+        response = requestBuilder.sendPUTAsanaRequest_Project(projectGID);
+        logger.info("<<<<<<<<<<< Response: " + response.asPrettyString());
+    }
+
+    @When("User perform asana Delete project operation")
+    public void user_perform_asana_Delete_project_operation() {
+        response = requestBuilder.sendDELETEAsanaRequest_Project(projectGID);
+        logger.info("<<<<<<<<<<< Response: " + response.asPrettyString());
+        response.then().spec(ResponseSpecificationHelper.getResponseSpecificationForDeletedProject(project));
     }
 
     @Then("User is able to see response with workspace details")
@@ -70,13 +91,6 @@ public class StepsDefinitionsAsana {
         logger.info("<<<<<<<<<<< Test passed");
     }
 
-    @When("User perform asana Delete project operation")
-    public void user_perform_asana_Delete_project_operation() {
-       response= requestBuilder.sendDELETEAsanaRequest_Project(projectGID);
-        logger.info("<<<<<<<<<<< Response: " + response.asPrettyString());
-        response.then().spec(ResponseSpecificationHelper.getResponseSpecificationForDeletedProject(project));
-    }
-
     @Then("User is able to see in response list of projects without deleted project details")
     public void user_is_able_to_see_in_response_list_of_projects_without_deleted_project_details() {
         logger.info("<<<<<<<<<<< user_is_able_to_see_in_response_list_of_projects_without_deleted_project_details");
@@ -84,5 +98,14 @@ public class StepsDefinitionsAsana {
         logger.info("<<<<<<<<<<< Response: " + response.asPrettyString());
         List<String> gidList = response.jsonPath().getList(ObjectsStructureData.PROJECT_GID);
         Assertions.assertFalse(gidList.contains(projectGID));
+    }
+
+    @Then("User is able to see response with updated project details")
+    public void user_is_able_to_see_response_with_updated_project_details() {
+        logger.info("<<<<<<<<<<< user_is_able_to_see_response_with_updated_project_details");
+        response.then().spec(ResponseSpecificationHelper.getResponseSpecificationForUpdatedProject(project));
+        requestBuilder.sendDELETEAsanaRequest_Project(projectGID); //cleaning
+        response = null;
+        logger.info("<<<<<<<<<<< Test passed");
     }
 }

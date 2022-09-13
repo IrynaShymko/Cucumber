@@ -28,4 +28,9 @@ public class RequestBuilder {
         return given(RequestSpecificationHelper.getRequestSpecificationForProjects())
                 .when().get();
     }
+
+    public Response sendPUTAsanaRequest_Project(String projectGID) {
+        return given(RequestSpecificationHelper.getRequestSpecificationForUpdateProject(projectGID))
+                .when().body(new File(Data.PATH_TO_PROJECT_OBJECT_UPDATE)).put();
+    }
 }

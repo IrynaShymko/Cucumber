@@ -7,6 +7,6 @@ import lombok.Data;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Project {
     private String name;
-    private String teamGID;
+    private String team;
 }
 

@@ -10,6 +10,12 @@ Feature: Asana Test
     When  User perform asana POST project operation
     Then  User is able to see response with project details
 
+  Scenario: Update project
+    Given I have updated project object
+    And User perform asana POST project operation
+    When User perform asana PUT project operation
+    Then User is able to see response with updated project details
+
   Scenario: Delete project
     Given User perform asana POST project operation
     When User perform asana Delete project operation

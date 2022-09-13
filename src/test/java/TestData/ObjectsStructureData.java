@@ -8,8 +8,8 @@ public class ObjectsStructureData {
 
     //Project
     public static final String PROJECT_GID = "data.gid";
-    public static final String PROJECT_NAME = "name";
-    public static final String PROJECT_TEAM_GID = "team.gid";
+    public static final String PROJECT_NAME = "data.name";
+    public static final String PROJECT_TEAM_GID = "data.team.gid";
 
 
 

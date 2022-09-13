@@ -35,7 +35,7 @@ public class ResponseSpecificationHelper {
         responseSpecification
                 .statusCode(201)
                 .body(ObjectsStructureData.PROJECT_NAME, is(project.getName()))
-                .body(ObjectsStructureData.PROJECT_TEAM_GID, is(project.getTeamGID()));
+                .body(ObjectsStructureData.PROJECT_TEAM_GID, is(project.getTeam()));
         return responseSpecification;
     }
 
@@ -43,6 +43,15 @@ public class ResponseSpecificationHelper {
         ResponseSpecification responseSpecification = RestAssured.expect();
         responseSpecification
                 .statusCode(200);
+        return responseSpecification;
+    }
+
+    public static ResponseSpecification getResponseSpecificationForUpdatedProject(Project project) {
+        ResponseSpecification responseSpecification = RestAssured.expect();
+        responseSpecification
+                .statusCode(200)
+                .body(ObjectsStructureData.PROJECT_NAME, is(project.getName()))
+                .body(ObjectsStructureData.PROJECT_TEAM_GID, is(project.getTeam()));
         return responseSpecification;
     }
 }

@@ -29,4 +29,12 @@ public class RequestSpecificationHelper {
                 .basePath(Data.BASE_PATH_PROJECTS + "/"+projectGID);
         return requestSpecification;
     }
+
+    public static RequestSpecification getRequestSpecificationForUpdateProject(String projectGID) {
+        RequestSpecification requestSpecification = RestAssured.given()
+                .auth().oauth2(Data.TOKEN)
+                .baseUri(Data.BASE_URI)
+                .basePath(Data.BASE_PATH_PROJECTS + "/"+projectGID);
+        return requestSpecification;
+    }
 }

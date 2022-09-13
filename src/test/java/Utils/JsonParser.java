@@ -10,6 +10,7 @@ import java.io.IOException;
 
 public class JsonParser {
     ObjectMapper mapper;
+    Project project;
 
     public Workspace parseWorkspaceFromJson() {
         Workspace workspace = null;
@@ -24,11 +25,19 @@ public class JsonParser {
     }
 
     public Project parseProjectFromJson() {
-        Project project= null;
         try {
-
             mapper = new ObjectMapper();
-            project = mapper.readValue(new File(Data.PATH_TO_PROJECT_OBJECT), Project.class);
+            project = mapper.readValue(new File(Data.PATH_TO_BASIC_PROJECT_OBJECT), Project.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return project;
+    }
+
+    public Project parseUpdatedProjectFromJson() {
+        try {
+            mapper = new ObjectMapper();
+            project = mapper.readValue(new File(Data.PATH_TO_BASIC_PROJECT_OBJECT_UPDATE), Project.class);
         } catch (IOException e) {
             e.printStackTrace();
         }

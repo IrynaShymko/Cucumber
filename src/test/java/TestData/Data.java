@@ -7,7 +7,10 @@ public class Data {
 
     //PATH TO OBJECT
     public final static String PATH_TO_WORKSPACE_OBJECT= "src/test/resources/workspace.json";
+    public final static String PATH_TO_BASIC_PROJECT_OBJECT= "src/test/resources/basicProject.json";
     public final static String PATH_TO_PROJECT_OBJECT= "src/test/resources/project.json";
+    public final static String PATH_TO_PROJECT_OBJECT_UPDATE= "src/test/resources/projectUpdate.json";
+    public final static String PATH_TO_BASIC_PROJECT_OBJECT_UPDATE= "src/test/resources/basicProjectUpdate.json";
 
     //BASE PATH
     public final static String BASE_PATH_WORKSPACES="/workspaces";
